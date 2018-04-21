@@ -41,9 +41,6 @@ function App() {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Private methods
-
-App.prototype._applyValues = function() {};
-
 App.prototype._renderDice = function() {
   // Dynamically create the dice elements using values returned from Game object.
   var dice = this.game.data.round.dice;
@@ -62,12 +59,12 @@ App.prototype._renderDice = function() {
         return className;
       })
       .addClass('die-icon d' + current.value);
+
+    // Append die to the dice container and add to dice array.
     this.$diceContainer.append($die);
     this.$dice.push($die);
   }
 };
-
-App.prototype._setDieClass = function() {};
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Public methods
