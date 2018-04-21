@@ -16,23 +16,17 @@ Game.prototype.initialize = function() {
     .then(function() {
       // Get new game from API
       return $.ajax({
-        method: "GET",
-        url: "/api/game"
+        method: 'GET',
+        url: '/api/game'
       });
     })
     .then(function(res) {
       this.data = res;
+      console.log(this.data);
     });
 };
 
-Game.prototype.rollDice = function() {
-  // @TODO: Implement rolling unlocked dice (via API)
-  //
-  return $.ajax({
-    method: "GET",
-    url: "/api/game"
-  });
-};
+Game.prototype.rollDice = function() {};
 
 Game.prototype.selectScore = function(id) {
   // @TODO: Implement selecting a particular score (via API)
