@@ -26,7 +26,22 @@ Game.prototype.initialize = function() {
     });
 };
 
-Game.prototype.rollDice = function() {};
+Game.prototype.rollDice = function() {
+  return Promise.bind(this)
+    .then(function() {
+      var game = JSON.stringify(this.data);
+      console.log(game);
+      return $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        url: '/api/game/roll',
+        data: game
+      });
+    })
+    .then(function(res) {
+      console.log(res);
+    });
+};
 
 Game.prototype.selectScore = function(id) {
   // @TODO: Implement selecting a particular score (via API)

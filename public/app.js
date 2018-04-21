@@ -107,11 +107,18 @@ App.prototype.render = function() {
 };
 
 App.prototype.rollDice = function() {
-  // @TODO: This obviously needs to be implemented
+  if (!this.game.data) {
+    return;
+  }
+  this.game.rollDice();
 };
 
 App.prototype.selectScore = function(id) {
   // @TODO: Implement selecting a score (calling game function + updating state?)
+};
+
+App.prototype.toggleDiceLock = function(e) {
+  // @TODO: Implement locking a dice for roll.
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
