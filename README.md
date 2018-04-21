@@ -4,23 +4,21 @@ The object of Yahtzee is to obtain the highest score from throwing 5 dice. The g
 
 For additional information regarding the rules of Yahtzee, please refer to the following sites:
 
-- [Yahtzee Wikipedia Page](https://en.wikipedia.org/wiki/Yahtzee)
-- [Cardgames.io Yahtzee](https://cardgames.io/yahtzee/)
-- [Hasbro Classic Yahtzee Rules](https://www.hasbro.com/common/documents/dad2af551c4311ddbd0b0800200c9a66/8302F43150569047F57EB8D746BA9D86.pdf)
-- [The Yahtzee! Rules Page](http://www.yahtzee.org.uk/rules.html)
-
+* [Yahtzee Wikipedia Page](https://en.wikipedia.org/wiki/Yahtzee)
+* [Cardgames.io Yahtzee](https://cardgames.io/yahtzee/)
+* [Hasbro Classic Yahtzee Rules](https://www.hasbro.com/common/documents/dad2af551c4311ddbd0b0800200c9a66/8302F43150569047F57EB8D746BA9D86.pdf)
+* [The Yahtzee! Rules Page](http://www.yahtzee.org.uk/rules.html)
 
 ## Instructions
 
-The goal of this exercise is to create a fully functioning Yahtzee practice application that players may use to improve their Yahtzee skill. There is no need to support multiplayer functionality as this will be used purely for training purposes. 
+The goal of this exercise is to create a fully functioning Yahtzee practice application that players may use to improve their Yahtzee skill. There is no need to support multiplayer functionality as this will be used purely for training purposes.
 
 Another developer has already completed the API portion of the application and had just started created a skeleton of the user interface before being pulled onto another project. You have been tasked with picking up where they left off and completing the application. Please refer to `mockup.pdf` for additional information regarding desired layout and functionality. In addition to the included mockup, the following requirements apply:
 
-- The application includes up-to-date libraries for [jQuery](https://api.jquery.com/), [lodash](https://lodash.com/docs/4.17.5), [bluebird Promise Library](http://bluebirdjs.com/docs/api-reference.html), and [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/). In addition, it includes the latest version of [Font Awesome](https://fontawesome.com/). These are the only libraries you may use to complete the user interface.
-- Basic styling has been provided, however, feel free to edit the SASS files as necessary. Please note that proper functionality is more important than styling in this exercise.
-- Please infer recommended code styling from the existing code.
-- Although the initial developer had started creating a skeleton of the user interface, you are free to make changes to organization and structure provided that you satisfy the requirements of the exercise using only the libraries provided and the finished API. 
-
+* The application includes up-to-date libraries for [jQuery](https://api.jquery.com/), [lodash](https://lodash.com/docs/4.17.5), [bluebird Promise Library](http://bluebirdjs.com/docs/api-reference.html), and [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/). In addition, it includes the latest version of [Font Awesome](https://fontawesome.com/). These are the only libraries you may use to complete the user interface.
+* Basic styling has been provided, however, feel free to edit the SASS files as necessary. Please note that proper functionality is more important than styling in this exercise.
+* Please infer recommended code styling from the existing code.
+* Although the initial developer had started creating a skeleton of the user interface, you are free to make changes to organization and structure provided that you satisfy the requirements of the exercise using only the libraries provided and the finished API.
 
 ## Project Organization
 
@@ -44,7 +42,6 @@ yahtzee/
 ├── package.json         (Contains Node.js package specifications)
 ├── README.md            (This README file)
 └── server.js            (Contains main server logic)
-
 ```
 
 ## Getting Started
@@ -66,7 +63,6 @@ node server.js
 ```
 
 Once the server is running, you can access the application at [http://localhost:3400](http://localhost:3400). Please note that in an attempt to make development easier, the development server has been setup to automatically watch the files within the source directory and live-reload the application when files are changed.
-
 
 ## API
 
@@ -284,7 +280,6 @@ Summary rows, such as the following representation of the "Sum" category, does n
 
 In the case of "summary" rows, the `points` field indicates the currently awarded (or computed) points for the given category.
 
-
 ### 2. Roll Dice
 
 **Route Signature**: `POST /api/game/roll`
@@ -293,10 +288,9 @@ In the case of "summary" rows, the `points` field indicates the currently awarde
 
 **Response Body**: Updated `game` object
 
-The Roll Dice route is used to roll all unlocked dice, thereby advancing the turn within the current round. Any die with `locked` equal to `true` will NOT be altered. Therefore, it is the  user interface's responsibility to allow the end-user to toggle the `locked` state of each die within each round. Once the user is satisfied with their selection, they "re-roll" the remaining dice and it is at that time that the user interface should `POST` the current `game` object to this route.
+The Roll Dice route is used to roll all unlocked dice, thereby advancing the turn within the current round. Any die with `locked` equal to `true` will NOT be altered. Therefore, it is the user interface's responsibility to allow the end-user to toggle the `locked` state of each die within each round. Once the user is satisfied with their selection, they "re-roll" the remaining dice and it is at that time that the user interface should `POST` the current `game` object to this route.
 
 Please note that in addition to updating the unlocked dice values, this route will also update the projected points for all unlocked rows in the scorecard. In this way, the user interface simply needs to report the projected score for each category and is not responsible for performing scoring projections.
-
 
 ### 3. Select Scoring Category
 
@@ -310,4 +304,4 @@ Please note that in addition to updating the unlocked dice values, this route wi
 
 The Select Scoring Category route is used to assign the current round to a particular scoring category. Typically this is called when the round has reached turn 3 (i.e., the user has no more rolls for the current round), however, it may be called earlier as well (if the user has already obtained the desired dice configuration). This route will first set the points to the indicated scoring category, and then set the `locked` state of that row to `true` (indicating that the points have been committed and may no longer be changed).
 
-In addition, if there are still remaining rounds (i.e., not all scoring categories have been locked), this route will reset the current round and re-roll all dice. The game should continue until the current round is no longer reset. 
+In addition, if there are still remaining rounds (i.e., not all scoring categories have been locked), this route will reset the current round and re-roll all dice. The game should continue until the current round is no longer reset.

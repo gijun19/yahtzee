@@ -83,17 +83,21 @@ html {
  */
 .scorecard th.score {
   text-align: center; }
+
 .scorecard td.score {
   font-feature-settings: 'tnum';
   text-align: center;
   width: 100px; }
+
 .scorecard th.action,
 .scorecard td.action {
   width: 200px; }
+
 .scorecard .table-secondary,
 .scorecard .table-secondary > td,
 .scorecard .table-secondary > th {
   background-color: #f3f3f3; }
+
 .scorecard .actions {
   align-items: center;
   display: flex;

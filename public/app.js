@@ -15,7 +15,6 @@ function App() {
 
 	// Gather buttons
 	this.$roll = $('#roll');
-
 	this.$roll.on('click', function() {
 		self.rollDice();
 	});
@@ -34,7 +33,7 @@ function App() {
 		self.selectScore(
 			$(this)
 				.closest('tr')
-				.attr('id')
+				.attr('id'),
 		);
 	});
 }
@@ -81,7 +80,6 @@ App.prototype.render = function() {
 	if (!this.game.data) {
 		return;
 	}
-
 	// @TODO: Implement rendering logic for updating DOM elements, I can call this anytime things
 	//        change to update the DOM elements.
 };
