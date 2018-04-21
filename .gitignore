@@ -63,3 +63,6 @@ typings/
 
 # atom live server package
 .atom-live-server.json
+
+#sass-cache
+.sass-cache
