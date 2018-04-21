@@ -42,8 +42,12 @@ function App() {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Private methods
 App.prototype._renderDice = function() {
+  if (this.$dice.length) {
+    this._clearDice();
+  }
   // Dynamically create the dice elements using values returned from Game object.
   var dice = this.game.data.round.dice;
+
   for (var i = 0; i < dice.length; ++i) {
     var current = dice[i];
 
@@ -63,6 +67,15 @@ App.prototype._renderDice = function() {
     // Append die to the dice container and add to dice array.
     this.$diceContainer.append($die);
     this.$dice.push($die);
+  }
+};
+
+App.prototype._clearDice = function() {
+  if (this.$dice.length) {
+    // Clear the values we saved for future use.
+    this.$dice = [];
+    // Clear the previous DOM elements.
+    this.$diceContainer.empty('.die');
   }
 };
 
@@ -107,10 +120,13 @@ App.prototype.render = function() {
 };
 
 App.prototype.rollDice = function() {
-  if (!this.game.data) {
-    return;
-  }
-  this.game.rollDice();
+  return Promise.bind(this)
+    .then(function() {
+      return this.game.rollDice();
+    })
+    .then(function() {
+      this.render();
+    });
 };
 
 App.prototype.selectScore = function(id) {
