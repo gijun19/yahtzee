@@ -3,14 +3,23 @@
  *
  * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
  */
+*,
+html {
+  box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
 /*
  * Global
  *
  * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
  */
-a.options-item {
+.options-item {
   cursor: pointer !important; }
-  a.options-item:hover {
+  .options-item:hover {
     text-decoration: underline !important; }
 
 /*
@@ -37,28 +46,28 @@ a.options-item {
       cursor: pointer; }
       .dice .die .die-icon.d1 {
         background-image: url("../img/die1.png");
-        width: 60px;
-        height: 60px; }
+        height: 60px;
+        width: 60px; }
       .dice .die .die-icon.d2 {
         background-image: url("../img/die2.png");
-        width: 60px;
-        height: 60px; }
+        height: 60px;
+        width: 60px; }
       .dice .die .die-icon.d3 {
         background-image: url("../img/die3.png");
-        width: 60px;
-        height: 60px; }
+        height: 60px;
+        width: 60px; }
       .dice .die .die-icon.d4 {
         background-image: url("../img/die4.png");
-        width: 60px;
-        height: 60px; }
+        height: 60px;
+        width: 60px; }
       .dice .die .die-icon.d5 {
         background-image: url("../img/die5.png");
-        width: 60px;
-        height: 60px; }
+        height: 60px;
+        width: 60px; }
       .dice .die .die-icon.d6 {
         background-image: url("../img/die6.png");
-        width: 60px;
-        height: 60px; }
+        height: 60px;
+        width: 60px; }
     .dice .die .die-status {
       cursor: pointer;
       margin-left: 10px; }
@@ -74,20 +83,17 @@ a.options-item {
  */
 .scorecard th.score {
   text-align: center; }
-
 .scorecard td.score {
-  width: 100px;
-  text-align: center;
   font-feature-settings: 'tnum';
-  -webkit-font-feature-settings: 'tnum';
-  -moz-font-feature-settings: 'tnum'; }
-
-.scorecard th.action, .scorecard td.action {
+  text-align: center;
+  width: 100px; }
+.scorecard th.action,
+.scorecard td.action {
   width: 200px; }
-
-.scorecard .table-secondary, .scorecard .table-secondary > td, .scorecard .table-secondary > th {
+.scorecard .table-secondary,
+.scorecard .table-secondary > td,
+.scorecard .table-secondary > th {
   background-color: #f3f3f3; }
-
 .scorecard .actions {
   align-items: center;
   display: flex;

@@ -60,3 +60,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# atom live server package
+.atom-live-server.json

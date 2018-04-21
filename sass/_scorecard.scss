@@ -5,33 +5,34 @@
  */
 
 .scorecard {
-    th.score {
-        text-align: center;
-    }
+	th.score {
+		text-align: center;
+	}
 
-    td.score {
-        width: 100px;
-        text-align: center;
-        font-feature-settings: 'tnum';
-        -webkit-font-feature-settings: 'tnum';
-        -moz-font-feature-settings: 'tnum';
-    }
+	td.score {
+		font-feature-settings: 'tnum';
+		text-align: center;
+		width: 100px;
+	}
 
-    th.action, td.action {
-        width: 200px;
-    }
+	th.action,
+	td.action {
+		width: 200px;
+	}
 
-    .table-secondary, .table-secondary > td, .table-secondary > th {
-        background-color: #f3f3f3;
-    }
+	.table-secondary,
+	.table-secondary > td,
+	.table-secondary > th {
+		background-color: #f3f3f3;
+	}
 
-    .actions {
-        align-items: center;
-        display: flex;
-        height: 23px;
+	.actions {
+		align-items: center;
+		display: flex;
+		height: 23px;
 
-        .btn-sm {
-            padding: 0rem 0.5rem;
-        }
-    }
+		.btn-sm {
+			padding: 0rem 0.5rem;
+		}
+	}
 }

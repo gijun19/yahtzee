@@ -4,10 +4,10 @@
  * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
  */
 
-a.options-item {
-    cursor: pointer !important;
+.options-item {
+	cursor: pointer !important;
 
-    &:hover {
-        text-decoration: underline !important;
-    }
+	&:hover {
+		text-decoration: underline !important;
+	}
 }

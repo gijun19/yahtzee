@@ -5,48 +5,48 @@
  */
 
 .dice {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    .die {
-        align-items: center;
-        display: flex;
-        flex-direction: row;
-        margin-top: 10px;
+	.die {
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		margin-top: 10px;
 
-        &.disabled {
-            .die-icon {
-                cursor: not-allowed;
-                opacity: 0.7;
-            }
+		&.disabled {
+			.die-icon {
+				cursor: not-allowed;
+				opacity: 0.7;
+			}
 
-            .die-status {
-                cursor: not-allowed;
-            }
-        }
+			.die-status {
+				cursor: not-allowed;
+			}
+		}
 
-        .die-icon {
-            background-repeat: no-repeat;
-            background-size: contain;
-            cursor: pointer;
+		.die-icon {
+			background-repeat: no-repeat;
+			background-size: contain;
+			cursor: pointer;
 
-            @for $i from 1 through 6 {
-                &.d#{$i} {
-                    background-image: url("../img/die#{$i}.png");
-                    width: 60px;
-                    height: 60px;
-                }
-            }
-        }
+			@for $i from 1 through 6 {
+				&.d#{$i} {
+					background-image: url('../img/die#{$i}.png');
+					height: 60px;
+					width: 60px;
+				}
+			}
+		}
 
-        .die-status {
-            cursor: pointer;
-            margin-left: 10px;
-        }
-    }
+		.die-status {
+			cursor: pointer;
+			margin-left: 10px;
+		}
+	}
 }
 
 .roll-badge {
-    margin-left: 5px;
-    width: 46px;
+	margin-left: 5px;
+	width: 46px;
 }
