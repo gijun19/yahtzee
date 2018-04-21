@@ -1,0 +1,52 @@
+/*
+ * Dice
+ *
+ * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ */
+
+.dice {
+    display: flex;
+    flex-direction: column;
+
+    .die {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+
+        &.disabled {
+            .die-icon {
+                cursor: not-allowed;
+                opacity: 0.7;
+            }
+
+            .die-status {
+                cursor: not-allowed;
+            }
+        }
+
+        .die-icon {
+            background-repeat: no-repeat;
+            background-size: contain;
+            cursor: pointer;
+
+            @for $i from 1 through 6 {
+                &.d#{$i} {
+                    background-image: url("../img/die#{$i}.png");
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+        }
+
+        .die-status {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    }
+}
+
+.roll-badge {
+    margin-left: 5px;
+    width: 46px;
+}

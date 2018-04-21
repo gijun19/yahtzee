@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title ng-bind="title">Yahtzee!</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8">
+
+    <base href="/">
+
+    <!-- Vendor Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+
+    <!-- Application Stylesheets -->
+    <link type="text/css" href="/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                        <h4 class="text-white">About</h4>
+                        <p class="text-muted">Yahtzee is a really fun game, if you are interested in learning more, you can visit the <a href="https://en.wikipedia.org/wiki/Yahtzee">Yahtzee Wikipedia Page</a> or play a game yourself at <a href="https://cardgames.io/yahtzee/">Cardgames.io</a>.</p>
+                    </div>
+                    <div class="col-sm-4 offset-md-1 py-4">
+                        <h4 class="text-white">Options</h4>
+                        <ul class="list-unstyled">
+                            <li><a id="reset-game" class="options-item text-white">Reset Game</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-dark bg-dark mb-3">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <i class="fas fa-gamepad" style="margin-right: 10px;"></i>
+                    <strong>Yahtzee!</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Game -->
+    <div class="container">
+        <div class="row">
+
+            <!-- Actions and Dice -->
+            <div class="col-2">
+                <button id="roll" type="button" class="btn btn-primary">Roll Dice</button>
+                <div id="dice" class="dice">
+                    <div class="die">
+                        <div class="die-icon d1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scorecard -->
+            <div class="col">
+                <table id="scorecard" class="table table-sm scorecard">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th class="score" scope="col">Score</th>
+                            <th class="action" scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="name" scope="row"></th>
+                            <td class="score"></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="btn btn-outline-primary btn-sm">Select</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Application Libraries -->
+    <script type="text/javascript" src="/game.js"></script>
+    <script type="text/javascript" src="/app.js"></script>
+</body>
+
+</html>

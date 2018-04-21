@@ -1,0 +1,37 @@
+/*
+ * Scorecard
+ *
+ * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ */
+
+.scorecard {
+    th.score {
+        text-align: center;
+    }
+
+    td.score {
+        width: 100px;
+        text-align: center;
+        font-feature-settings: 'tnum';
+        -webkit-font-feature-settings: 'tnum';
+        -moz-font-feature-settings: 'tnum';
+    }
+
+    th.action, td.action {
+        width: 200px;
+    }
+
+    .table-secondary, .table-secondary > td, .table-secondary > th {
+        background-color: #f3f3f3;
+    }
+
+    .actions {
+        align-items: center;
+        display: flex;
+        height: 23px;
+
+        .btn-sm {
+            padding: 0rem 0.5rem;
+        }
+    }
+}

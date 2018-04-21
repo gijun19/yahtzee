@@ -1,0 +1,96 @@
+/*
+ * Master SASS - Includes all dependencies
+ *
+ * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ */
+/*
+ * Global
+ *
+ * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ */
+a.options-item {
+  cursor: pointer !important; }
+  a.options-item:hover {
+    text-decoration: underline !important; }
+
+/*
+ * Dice
+ *
+ * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ */
+.dice {
+  display: flex;
+  flex-direction: column; }
+  .dice .die {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px; }
+    .dice .die.disabled .die-icon {
+      cursor: not-allowed;
+      opacity: 0.7; }
+    .dice .die.disabled .die-status {
+      cursor: not-allowed; }
+    .dice .die .die-icon {
+      background-repeat: no-repeat;
+      background-size: contain;
+      cursor: pointer; }
+      .dice .die .die-icon.d1 {
+        background-image: url("../img/die1.png");
+        width: 60px;
+        height: 60px; }
+      .dice .die .die-icon.d2 {
+        background-image: url("../img/die2.png");
+        width: 60px;
+        height: 60px; }
+      .dice .die .die-icon.d3 {
+        background-image: url("../img/die3.png");
+        width: 60px;
+        height: 60px; }
+      .dice .die .die-icon.d4 {
+        background-image: url("../img/die4.png");
+        width: 60px;
+        height: 60px; }
+      .dice .die .die-icon.d5 {
+        background-image: url("../img/die5.png");
+        width: 60px;
+        height: 60px; }
+      .dice .die .die-icon.d6 {
+        background-image: url("../img/die6.png");
+        width: 60px;
+        height: 60px; }
+    .dice .die .die-status {
+      cursor: pointer;
+      margin-left: 10px; }
+
+.roll-badge {
+  margin-left: 5px;
+  width: 46px; }
+
+/*
+ * Scorecard
+ *
+ * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ */
+.scorecard th.score {
+  text-align: center; }
+
+.scorecard td.score {
+  width: 100px;
+  text-align: center;
+  font-feature-settings: 'tnum';
+  -webkit-font-feature-settings: 'tnum';
+  -moz-font-feature-settings: 'tnum'; }
+
+.scorecard th.action, .scorecard td.action {
+  width: 200px; }
+
+.scorecard .table-secondary, .scorecard .table-secondary > td, .scorecard .table-secondary > th {
+  background-color: #f3f3f3; }
+
+.scorecard .actions {
+  align-items: center;
+  display: flex;
+  height: 23px; }
+  .scorecard .actions .btn-sm {
+    padding: 0rem 0.5rem; }

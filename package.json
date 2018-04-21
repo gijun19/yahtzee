@@ -1,0 +1,25 @@
+{
+  "name": "yahtzee",
+  "version": "1.0.0",
+  "description": "Yahtzee!",
+  "private": true,
+  "dependencies": {
+    "beeper": "1.1.1",
+    "bluebird": "3.5.1",
+    "body-parser": "1.18.2",
+    "chalk": "2.3.2",
+    "chance": "1.0.13",
+    "chokidar": "2.0.3",
+    "connect-livereload": "0.6.0",
+    "express": "4.16.3",
+    "fs-extra": "5.0.0",
+    "glob": "7.1.2",
+    "jshint": "2.9.5",
+    "lodash": "4.17.5",
+    "moment": "2.22.0",
+    "node-sass": "4.8.3",
+    "request": "2.85.0",
+    "serve-static": "1.13.2",
+    "tiny-lr": "1.1.1"
+  }
+}
