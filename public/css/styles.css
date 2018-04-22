@@ -12,6 +12,9 @@ html {
 *:after {
   box-sizing: inherit; }
 
+body {
+  min-height: 100vh; }
+
 /*
  * Global
  *
@@ -21,6 +24,9 @@ html {
   cursor: pointer !important; }
   .options-item:hover {
     text-decoration: underline !important; }
+
+.help-text {
+  margin-bottom: 10px; }
 
 /*
  * Dice
@@ -35,15 +41,21 @@ html {
     display: flex;
     flex-direction: row;
     margin-top: 10px; }
-    .dice .die.disabled .die-icon {
-      cursor: not-allowed;
+    .dice .die.locked .die-icon {
       opacity: 0.7; }
-    .dice .die.disabled .die-status {
-      cursor: not-allowed; }
+    .dice .die.locked .die-toggle .fa-unlock {
+      display: none; }
+    .dice .die.locked .die-toggle .fa-lock {
+      display: block; }
+    .dice .die .die-toggle {
+      cursor: pointer;
+      align-self: flex-end;
+      margin-left: 12px; }
+      .dice .die .die-toggle .fa-lock {
+        display: none; }
     .dice .die .die-icon {
       background-repeat: no-repeat;
-      background-size: contain;
-      cursor: pointer; }
+      background-size: contain; }
       .dice .die .die-icon.d1 {
         background-image: url("../img/die1.png");
         height: 60px;
@@ -68,39 +80,10 @@ html {
         background-image: url("../img/die6.png");
         height: 60px;
         width: 60px; }
-    .dice .die .die-status {
-      cursor: pointer;
-      margin-left: 10px; }
 
 .roll-badge {
   margin-left: 5px;
   width: 46px; }
 
-/*
- * Scorecard
- *
- * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
- */
-.scorecard th.score {
-  text-align: center; }
-
-.scorecard td.score {
-  font-feature-settings: 'tnum';
-  text-align: center;
-  width: 100px; }
-
-.scorecard th.action,
-.scorecard td.action {
-  width: 200px; }
-
-.scorecard .table-secondary,
-.scorecard .table-secondary > td,
-.scorecard .table-secondary > th {
-  background-color: #f3f3f3; }
-
-.scorecard .actions {
-  align-items: center;
-  display: flex;
-  height: 23px; }
-  .scorecard .actions .btn-sm {
-    padding: 0rem 0.5rem; }
+.details {
+  margin-top: 10px; }

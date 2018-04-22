@@ -14,21 +14,32 @@
 		flex-direction: row;
 		margin-top: 10px;
 
-		&.disabled {
+		&.locked {
 			.die-icon {
-				cursor: not-allowed;
 				opacity: 0.7;
 			}
+			.die-toggle {
+				.fa-unlock {
+					display: none;
+				}
+				.fa-lock {
+					display: block;
+				}
+			}
+		}
 
-			.die-status {
-				cursor: not-allowed;
+		.die-toggle {
+			cursor: pointer;
+			align-self: flex-end;
+			margin-left: 12px;
+			.fa-lock {
+				display: none;
 			}
 		}
 
 		.die-icon {
 			background-repeat: no-repeat;
 			background-size: contain;
-			cursor: pointer;
 
 			@for $i from 1 through 6 {
 				&.d#{$i} {
@@ -37,11 +48,6 @@
 					width: 60px;
 				}
 			}
-		}
-
-		.die-status {
-			cursor: pointer;
-			margin-left: 10px;
 		}
 	}
 }

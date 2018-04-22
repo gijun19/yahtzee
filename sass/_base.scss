@@ -8,3 +8,7 @@ html {
 *:after {
 	box-sizing: inherit;
 }
+
+body {
+	min-height: 100vh;
+}

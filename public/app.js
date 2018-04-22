@@ -16,6 +16,9 @@ function App() {
     self.reset();
   });
 
+  // Gather round details
+  this.$turnNumber = $('.turn-number');
+
   // Gather buttons
   this.$roll = $('#roll');
   this.$roll.on('click', function() {
@@ -27,7 +30,7 @@ function App() {
   this.$diceContainer = $('#dice');
   this.$dieTemplate = this.$diceContainer.children('div').detach();
   this.$dice = [];
-  this.$diceContainer.on('click', '.die-icon', function() {
+  this.$diceContainer.on('click', '.die-toggle', function() {
     self.toggleDiceLock(
       $(this)
         .closest('.die')
@@ -48,9 +51,6 @@ function App() {
     );
   });
 }
-
-// Gather detail elements.
-this.$roundNumber = $('#roundNumber');
 
 // Gather loading mask
 this.$loadingMask = $('#loadingMask');
@@ -112,10 +112,12 @@ App.prototype.initialize = function() {
 };
 
 App.prototype.render = function() {
-  // Update the DOM.
   if (!this.game.data) {
     return;
   }
+
+  // Set turn number text.
+  this.$turnNumber.text('Turn Number: ' + this.game.data.round.turn);
 
   // Update die templates with values from API call.
   var dice = this.game.data.round.dice;
@@ -126,9 +128,10 @@ App.prototype.render = function() {
     // Update class name if value has changed.
     var className = 'die-icon d' + current.value;
     var currentClass = $die.children().attr('class');
+
     if (className !== currentClass) {
       $die
-        .children()
+        .children('.die-icon')
         .removeClass()
         .addClass('die-icon d' + current.value);
     }
@@ -196,8 +199,13 @@ App.prototype.toggleDiceLock = function(index) {
 };
 
 App.prototype.reset = function() {
-  var self = new App();
-  console.log(self);
+  // Reset dice.
+  this.$dice = [];
+  this.$diceContainer.empty().append(this.$dieTemplate.clone());
+
+  // Reset scoreboard.
+  this.$scorecardRows = [];
+  this.$scorecardBody.empty().append(this.$scorecardRowTemplate.clone());
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
