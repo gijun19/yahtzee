@@ -60,7 +60,14 @@ App.prototype._renderScorecardData = function() {
 
   // Iterate over each already generated row and apply scorecard values.
   $(this.$scorecardRows).each(function(index, $row) {
-    $row.children('.score').text(scorecard[index].points);
+    var current = scorecard[index];
+    var $score = $row.children('.score');
+    $score.text(current.points);
+
+    if (current.locked) {
+      $row.find('.actions > button').hide();
+      $score.addClass('font-weight-bold');
+    }
   });
 };
 
@@ -109,6 +116,8 @@ App.prototype.initialize = function() {
         $row.children('.name').text(item.name);
         if (item.type === 'summary') {
           $row.addClass('table-secondary');
+          $row.children('.score').addClass('font-weight-bold text-primary');
+          $row.find('.actions button').hide();
         }
 
         // Append row to body and add to rows
@@ -152,10 +161,14 @@ App.prototype.rollDice = function() {
 };
 
 App.prototype.selectScore = function(id) {
-  return Promise.bind(this).then(function() {
-    // API call via game object.
-    return this.game.selectScore(id);
-  });
+  return Promise.bind(this)
+    .then(function() {
+      // API call via game object.
+      return this.game.selectScore(id);
+    })
+    .then(function() {
+      this.render();
+    });
 };
 
 App.prototype.toggleDiceLock = function(index) {
