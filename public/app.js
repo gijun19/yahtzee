@@ -176,7 +176,7 @@ App.prototype.rollDice = function() {
       this.render();
     })
     .catch(function(err) {
-      console.log(err);
+      alert(err.responseText);
     });
 };
 
@@ -189,6 +189,9 @@ App.prototype.selectScore = function(id) {
     .then(function() {
       // Update DOM.
       this.render();
+    })
+    .catch(function(err) {
+      alert(err.responseText);
     });
 };
 
@@ -199,13 +202,25 @@ App.prototype.toggleDiceLock = function(index) {
 };
 
 App.prototype.reset = function() {
-  // Reset dice.
+  // Reset dice and reinsert intial template.
   this.$dice = [];
   this.$diceContainer.empty().append(this.$dieTemplate.clone());
 
-  // Reset scoreboard.
+  // Reset scoreboard and reinsert intial template.
   this.$scorecardRows = [];
   this.$scorecardBody.empty().append(this.$scorecardRowTemplate.clone());
+
+  // Delete any saved data.
+  this.game.clearSavedData();
+
+  // Delete the game object to remove all references.
+  delete this.game;
+
+  // Create new game.
+  this.game = new Game();
+
+  // Reinitialize the application with new Game object.
+  this.initialize();
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

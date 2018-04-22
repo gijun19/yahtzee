@@ -14,6 +14,11 @@ function Game() {
 Game.prototype.initialize = function() {
   return Promise.bind(this)
     .then(function() {
+      // Check for previously saved data.
+      var savedData = this.getData();
+      if (savedData) {
+        return savedData;
+      }
       // Get new game from API
       return $.ajax({
         method: 'GET',
@@ -22,6 +27,7 @@ Game.prototype.initialize = function() {
     })
     .then(function(res) {
       this.data = res;
+      this.storeData();
     });
 };
 
@@ -38,6 +44,7 @@ Game.prototype.rollDice = function() {
     })
     .then(function(res) {
       this.data = res;
+      this.storeData();
     });
 };
 
@@ -56,6 +63,20 @@ Game.prototype.selectScore = function(id) {
     })
     .then(function(res) {
       this.data = res;
-      console.log(this.data);
+      this.storeData();
     });
+};
+
+Game.prototype.storeData = function() {
+  var data = JSON.stringify(this.data);
+  localStorage.setItem('game', data);
+};
+
+Game.prototype.getData = function() {
+  var data = localStorage.getItem('game');
+  return JSON.parse(localStorage.getItem('game'));
+};
+
+Game.prototype.clearSavedData = function() {
+  localStorage.removeItem('game');
 };
