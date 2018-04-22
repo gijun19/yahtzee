@@ -29,13 +29,11 @@ Game.prototype.rollDice = function() {
   // Roll dice via API.
   return Promise.bind(this)
     .then(function() {
-      var game = JSON.stringify(this.data);
-      console.log(game);
       return $.ajax({
         method: 'POST',
         contentType: 'application/json',
         url: '/api/game/roll',
-        data: game
+        data: JSON.stringify(this.data)
       });
     })
     .then(function(res) {
@@ -45,12 +43,13 @@ Game.prototype.rollDice = function() {
 
 Game.prototype.selectScore = function(id) {
   // Select a particular score via API.
-  // /api/game/select/:id
   return Promise.bind(this).then(function() {
+    // Pass game in req.body & id in req.params
     return $.ajax({
       method: 'PUT',
       contentType: 'application/json',
-      url: '/api/game/select/' + id
+      url: '/api/game/select/' + id,
+      data: JSON.stringify(this.data)
     });
   });
 };

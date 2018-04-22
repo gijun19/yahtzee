@@ -24,6 +24,13 @@ function App() {
   this.$diceContainer = $('#dice');
   this.$dieTemplate = this.$diceContainer.children('div').detach();
   this.$dice = [];
+  this.$diceContainer.on('click', 'div.die', function() {
+    self.toggleDiceLock(
+      $(this)
+        .closest('div')
+        .data('index')
+    );
+  });
 
   // Gather scorecard elements
   this.$scorecard = $('#scorecard');
@@ -41,10 +48,23 @@ function App() {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Private methods
-App.prototype._renderDice = function() {
-  if (this.$dice.length) {
-    this._clearDice();
-  }
+
+App.prototype._resetDice = function() {
+  this.$dice = [];
+  this.$diceContainer.empty();
+};
+
+App.prototype._renderScorecardData = function() {
+  // Get the scorecard returned from the API.
+  var scorecard = this.game.data.scorecard;
+
+  // Iterate over each already generated row and apply scorecard values.
+  $(this.$scorecardRows).each(function(index, $row) {
+    $row.children('.score').text(scorecard[index].points);
+  });
+};
+
+App.prototype._renderDiceData = function() {
   // Dynamically create the dice elements using values returned from Game object.
   var dice = this.game.data.round.dice;
 
@@ -56,26 +76,15 @@ App.prototype._renderDice = function() {
     var className = $die.attr('class');
     $die[0].dataset.index = i;
     $die.attr('value', current.value);
-    // Set class for changing the image.
+    // Set class for dice images.
     $die
       .children()
-      .removeClass(function() {
-        return className;
-      })
+      .removeClass()
       .addClass('die-icon d' + current.value);
 
     // Append die to the dice container and add to dice array.
     this.$diceContainer.append($die);
     this.$dice.push($die);
-  }
-};
-
-App.prototype._clearDice = function() {
-  if (this.$dice.length) {
-    // Clear the values we saved for future use.
-    this.$dice = [];
-    // Clear the previous DOM elements.
-    this.$diceContainer.empty('.die');
   }
 };
 
@@ -116,16 +125,29 @@ App.prototype.render = function() {
   if (!this.game.data) {
     return;
   }
-  this._renderDice();
+
+  // Clean if there's existing data.
+  if (this.$dice.length) {
+    this._resetDice();
+  }
+
+  // Update DOM
+  this._renderDiceData();
+  this._renderScorecardData();
 };
 
 App.prototype.rollDice = function() {
   return Promise.bind(this)
     .then(function() {
+      // API call for new data via game object.
       return this.game.rollDice();
     })
     .then(function() {
+      // Once new dice values are received, update DOM.
       this.render();
+    })
+    .catch(function(err) {
+      console.log(err);
     });
 };
 
@@ -133,8 +155,18 @@ App.prototype.selectScore = function(id) {
   // @TODO: Implement selecting a score (calling game function + updating state?)
 };
 
-App.prototype.toggleDiceLock = function(e) {
-  // @TODO: Implement locking a dice for roll.
+App.prototype.toggleDiceLock = function(index) {
+  var $die = this.$dice[index];
+  var dieData = this.game.data.round.dice[index];
+  $die.toggleClass('locked');
+  dieData.locked = !dieData.locked;
+};
+
+App.prototype.reset = function() {
+  if (!this.game.data) {
+    return;
+  }
+  this.initialize();
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
