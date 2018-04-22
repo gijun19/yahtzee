@@ -106,6 +106,8 @@ App.prototype._updateScorecardRows = function(scorecards) {
 // Public methods
 
 App.prototype.initialize = function() {
+  this.toggleLoadState();
+
   // Use initialize to render app template.
   return Promise.bind(this)
     .then(function() {
@@ -127,7 +129,7 @@ App.prototype.initialize = function() {
           $row.addClass('table-secondary');
 
           $row.children('.score').addClass('font-weight-bold text-primary'); // Add font weight and color for score
-          $row.find('.actions button').hide(); // Remove button for score column, bad UX.
+          $row.find('.actions').remove(); // Remove button for score column, bad UX.
         }
 
         // Append row to body and add to rows
@@ -170,6 +172,8 @@ App.prototype.render = function() {
 
   // Update scorecard rows.
   this._updateScorecardRows(this.game.data.scorecard);
+
+  this.toggleLoadState();
 };
 
 App.prototype.rollDice = function() {
@@ -184,12 +188,10 @@ App.prototype.rollDice = function() {
     .then(function() {
       // Update DOM.
       this.render();
-      // Toggle load state.
-      this.toggleLoadState();
     })
     .catch(function(err) {
-      alert(err.responseText);
       this.toggleLoadState();
+      alert(err.responseText);
     });
 };
 
@@ -203,7 +205,6 @@ App.prototype.selectScore = function(id) {
       return this.game.selectScore(id);
     })
     .then(function() {
-      this.toggleLoadState();
       // Update DOM.
       this.render();
     })
@@ -214,6 +215,7 @@ App.prototype.selectScore = function(id) {
 };
 
 App.prototype.toggleDiceLock = function(index) {
+  this.toggleLoadState();
   var die = this.game.data.round.dice[index];
   die.locked = !die.locked;
   this.render();
