@@ -42,14 +42,20 @@ Game.prototype.rollDice = function() {
 };
 
 Game.prototype.selectScore = function(id) {
+  console.log(id);
   // Select a particular score via API.
-  return Promise.bind(this).then(function() {
-    // Pass game in req.body & id in req.params
-    return $.ajax({
-      method: 'PUT',
-      contentType: 'application/json',
-      url: '/api/game/select/' + id,
-      data: JSON.stringify(this.data)
+  return Promise.bind(this)
+    .then(function() {
+      // Pass game in req.body & id in req.params
+      return $.ajax({
+        method: 'PUT',
+        contentType: 'application/json',
+        url: '/api/game/select/' + id,
+        data: JSON.stringify(this.data)
+      });
+    })
+    .then(function(res) {
+      this.data = res;
+      console.log(this.data);
     });
-  });
 };

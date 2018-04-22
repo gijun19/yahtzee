@@ -152,7 +152,10 @@ App.prototype.rollDice = function() {
 };
 
 App.prototype.selectScore = function(id) {
-  // @TODO: Implement selecting a score (calling game function + updating state?)
+  return Promise.bind(this).then(function() {
+    // API call via game object.
+    return this.game.selectScore(id);
+  });
 };
 
 App.prototype.toggleDiceLock = function(index) {
