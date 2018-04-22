@@ -96,7 +96,7 @@ App.prototype._updateScorecardRows = function(scorecards) {
     $score.text(current.points);
 
     if (current.locked) {
-      $row.find('.actions > button').hide();
+      $row.find('.actions').remove();
       $score.addClass('font-weight-bold');
     }
   });
