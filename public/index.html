@@ -58,12 +58,24 @@
 
             <!-- Actions and Dice -->
             <div class="col-2">
+                <p class="text-info help-text">
+                  Click lock/unlock icon choose which dice to keep.
+                </p>
                 <button id="roll" type="button" class="btn btn-primary">Roll Dice</button>
                 <div id="dice" class="dice">
                     <div class="die">
                         <div class="die-icon d1"></div>
+                        <div class="die-toggle">
+                          <i class="fas fa-lock fa-2x text-danger"></i>
+                          <i class="fas fa-unlock fa-2x text-success"></i>
+                        </div>
                     </div>
                 </div>
+
+                <div class="details align-bottom">
+                  <p class="text-info turn-number"></p>
+                </div>
+
             </div>
 
             <!-- Scorecard -->
@@ -91,6 +103,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Loading Mask -->
+    <div class="load-mask"></div>
 
     <!-- Vendor Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
