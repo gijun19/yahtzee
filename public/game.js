@@ -27,7 +27,6 @@ Game.prototype.initialize = function() {
     })
     .then(function(res) {
       this.data = res;
-      this.storeData();
     });
 };
 
@@ -44,7 +43,6 @@ Game.prototype.rollDice = function() {
     })
     .then(function(res) {
       this.data = res;
-      this.storeData();
     });
 };
 
@@ -63,7 +61,6 @@ Game.prototype.selectScore = function(id) {
     })
     .then(function(res) {
       this.data = res;
-      this.storeData();
     });
 };
 

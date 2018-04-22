@@ -10,6 +10,9 @@ function App() {
   // Public members
   this.game = new Game();
 
+  // Document body.
+  this.$body = $('body');
+
   // Gather options
   this.$reset = $('#reset-game');
   this.$reset.on('click', function() {
@@ -26,7 +29,6 @@ function App() {
   });
 
   // Gather and construct dice elements
-  this.$diceBadge = $('.roll-badge');
   this.$diceContainer = $('#dice');
   this.$dieTemplate = this.$diceContainer.children('div').detach();
   this.$dice = [];
@@ -53,11 +55,52 @@ function App() {
 }
 
 // Gather loading mask
-this.$loadingMask = $('#loadingMask');
+this.$loadMask = $('#load-mask');
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Private methods
-App.prototype._shouldUpdate = function() {};
+App.prototype._updateDice = function(dice) {
+  $(this.$dice).each(function(index, $die) {
+    var current = dice[index];
+
+    // Update class name if value has changed.
+    var className = 'die-icon d' + current.value;
+    var currentClass = $die.children('.die-icon').attr('class');
+
+    if (className !== currentClass) {
+      $die
+        .children('.die-icon')
+        .removeClass()
+        .addClass('die-icon d' + current.value);
+    }
+
+    // Update die value if value has changed.
+    if ($die.attr('value') !== current.value) {
+      $die.attr('value', current.value);
+    }
+
+    // Update locked if value has changed.
+    if (current.locked && !$die.hasClass('locked')) {
+      $die.addClass('locked');
+    } else if (!current.locked && $die.hasClass('locked')) {
+      $die.removeClass('locked');
+    }
+  });
+};
+
+App.prototype._updateScorecardRows = function(scorecards) {
+  // Map through scorecard rows, and update values at specified index.
+  $(this.$scorecardRows).each(function(index, $row) {
+    var current = scorecards[index];
+    var $score = $row.children('.score');
+    $score.text(current.points);
+
+    if (current.locked) {
+      $row.find('.actions > button').hide();
+      $score.addClass('font-weight-bold');
+    }
+  });
+};
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Public methods
@@ -116,56 +159,23 @@ App.prototype.render = function() {
     return;
   }
 
+  // Save game data here, we render everytime the game object is modified or updated with new values.
+  this.game.storeData();
+
   // Set turn number text.
   this.$turnNumber.text('Turn Number: ' + this.game.data.round.turn);
 
-  // Update die templates with values from API call.
-  var dice = this.game.data.round.dice;
+  // Update dice values.
+  this._updateDice(this.game.data.round.dice);
 
-  $(this.$dice).each(function(index, $die) {
-    var current = dice[index];
-
-    // Update class name if value has changed.
-    var className = 'die-icon d' + current.value;
-    var currentClass = $die.children().attr('class');
-
-    if (className !== currentClass) {
-      $die
-        .children('.die-icon')
-        .removeClass()
-        .addClass('die-icon d' + current.value);
-    }
-
-    // Update die value if value has changed.
-    if ($die.attr('value') !== current.value) {
-      $die.attr('value', current.value);
-    }
-
-    // Update locked if value has changed.
-    if (current.locked && !$die.hasClass('locked')) {
-      $die.addClass('locked');
-    } else if (!current.locked && $die.hasClass('locked')) {
-      $die.removeClass('locked');
-    }
-  });
-
-  // Update score table with values.
-  var scorecards = this.game.data.scorecard;
-
-  // Map through scorecard rows, and update values at specified index.
-  $(this.$scorecardRows).each(function(index, $row) {
-    var current = scorecards[index];
-    var $score = $row.children('.score');
-    $score.text(current.points);
-
-    if (current.locked) {
-      $row.find('.actions > button').hide();
-      $score.addClass('font-weight-bold');
-    }
-  });
+  // Update scorecard rows.
+  this._updateScorecardRows(this.game.data.scorecard);
 };
 
 App.prototype.rollDice = function() {
+  // Toggle load state.
+  this.toggleLoadState();
+
   return Promise.bind(this)
     .then(function() {
       // API call for new data via game object.
@@ -174,23 +184,31 @@ App.prototype.rollDice = function() {
     .then(function() {
       // Update DOM.
       this.render();
+      // Toggle load state.
+      this.toggleLoadState();
     })
     .catch(function(err) {
       alert(err.responseText);
+      this.toggleLoadState();
     });
 };
 
 App.prototype.selectScore = function(id) {
+  // Toggle load state.
+  this.toggleLoadState();
+
   return Promise.bind(this)
     .then(function() {
       // API call via game object.
       return this.game.selectScore(id);
     })
     .then(function() {
+      this.toggleLoadState();
       // Update DOM.
       this.render();
     })
     .catch(function(err) {
+      this.toggleLoadState();
       alert(err.responseText);
     });
 };
@@ -201,20 +219,21 @@ App.prototype.toggleDiceLock = function(index) {
   this.render();
 };
 
+App.prototype.toggleLoadState = function() {
+  this.$body.toggleClass('loading');
+};
+
 App.prototype.reset = function() {
   // Reset dice and reinsert intial template.
   this.$dice = [];
-  this.$diceContainer.empty().append(this.$dieTemplate.clone());
+  this.$diceContainer.empty();
 
   // Reset scoreboard and reinsert intial template.
   this.$scorecardRows = [];
-  this.$scorecardBody.empty().append(this.$scorecardRowTemplate.clone());
+  this.$scorecardBody.empty();
 
   // Delete any saved data.
   this.game.clearSavedData();
-
-  // Delete the game object to remove all references.
-  delete this.game;
 
   // Create new game.
   this.game = new Game();
