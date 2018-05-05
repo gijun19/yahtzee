@@ -9,16 +9,9 @@ For additional information regarding the rules of Yahtzee, please refer to the f
 * [Hasbro Classic Yahtzee Rules](https://www.hasbro.com/common/documents/dad2af551c4311ddbd0b0800200c9a66/8302F43150569047F57EB8D746BA9D86.pdf)
 * [The Yahtzee! Rules Page](http://www.yahtzee.org.uk/rules.html)
 
-## Instructions
+## Overview
 
-The goal of this exercise is to create a fully functioning Yahtzee practice application that players may use to improve their Yahtzee skill. There is no need to support multiplayer functionality as this will be used purely for training purposes.
-
-Another developer has already completed the API portion of the application and had just started created a skeleton of the user interface before being pulled onto another project. You have been tasked with picking up where they left off and completing the application. Please refer to `mockup.pdf` for additional information regarding desired layout and functionality. In addition to the included mockup, the following requirements apply:
-
-* The application includes up-to-date libraries for [jQuery](https://api.jquery.com/), [lodash](https://lodash.com/docs/4.17.5), [bluebird Promise Library](http://bluebirdjs.com/docs/api-reference.html), and [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/). In addition, it includes the latest version of [Font Awesome](https://fontawesome.com/). These are the only libraries you may use to complete the user interface.
-* Basic styling has been provided, however, feel free to edit the SASS files as necessary. Please note that proper functionality is more important than styling in this exercise.
-* Please infer recommended code styling from the existing code.
-* Although the initial developer had started creating a skeleton of the user interface, you are free to make changes to organization and structure provided that you satisfy the requirements of the exercise using only the libraries provided and the finished API.
+* The application includes [jQuery](https://api.jquery.com/), [lodash](https://lodash.com/docs/4.17.5), [bluebird Promise Library](http://bluebirdjs.com/docs/api-reference.html), and [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Font Awesome](https://fontawesome.com/).
 
 ## Project Organization
 
@@ -53,7 +46,7 @@ https://nodejs.org/
 Once you have node installed, you may get started developing the Yahtzee application by first installing the required npm modules by running:
 
 ```
-npm install
+npm install // Or `yarn install` if you have yarn
 ```
 
 Once the required npm modules are installed (you only need to run this command once), you can start the development server by running:
@@ -62,7 +55,7 @@ Once the required npm modules are installed (you only need to run this command o
 node server.js
 ```
 
-Once the server is running, you can access the application at [http://localhost:3400](http://localhost:3400). Please note that in an attempt to make development easier, the development server has been setup to automatically watch the files within the source directory and live-reload the application when files are changed.
+Once the server is running, you can access the application at [http://localhost:3400](http://localhost:3400). The development server has been setup to automatically watch the files within the source directory and live-reload the application when files are changed.
 
 ## API
 
