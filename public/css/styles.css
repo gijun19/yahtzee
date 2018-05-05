@@ -1,112 +1,137 @@
 /*
  * Master SASS - Includes all dependencies
  *
- * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ * 
  */
 *,
 html {
-  box-sizing: border-box; }
+	box-sizing: border-box;
+}
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit; }
+	box-sizing: inherit;
+}
 
 body {
-  min-height: 100vh;
-  position: relative; }
+	min-height: 100vh;
+	position: relative;
+}
 
 /*
  * Global
  *
- * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ * 
  */
 .options-item {
-  cursor: pointer !important; }
-  .options-item:hover {
-    text-decoration: underline !important; }
+	cursor: pointer !important;
+}
+.options-item:hover {
+	text-decoration: underline !important;
+}
 
 .help-text {
-  margin-bottom: 10px; }
+	margin-bottom: 10px;
+}
 
 /*
  * Dice
  *
- * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ * 
  */
 .dice {
-  display: flex;
-  flex-direction: column; }
-  .dice .die {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px; }
-    .dice .die.locked .die-icon {
-      opacity: 0.7; }
-    .dice .die.locked .die-toggle .fa-unlock {
-      display: none; }
-    .dice .die.locked .die-toggle .fa-lock {
-      display: block; }
-    .dice .die .die-toggle {
-      cursor: pointer;
-      align-self: flex-end;
-      margin-left: 12px; }
-      .dice .die .die-toggle .fa-lock {
-        display: none; }
-    .dice .die .die-icon {
-      background-repeat: no-repeat;
-      background-size: contain; }
-      .dice .die .die-icon.d1 {
-        background-image: url("../img/die1.png");
-        height: 60px;
-        width: 60px; }
-      .dice .die .die-icon.d2 {
-        background-image: url("../img/die2.png");
-        height: 60px;
-        width: 60px; }
-      .dice .die .die-icon.d3 {
-        background-image: url("../img/die3.png");
-        height: 60px;
-        width: 60px; }
-      .dice .die .die-icon.d4 {
-        background-image: url("../img/die4.png");
-        height: 60px;
-        width: 60px; }
-      .dice .die .die-icon.d5 {
-        background-image: url("../img/die5.png");
-        height: 60px;
-        width: 60px; }
-      .dice .die .die-icon.d6 {
-        background-image: url("../img/die6.png");
-        height: 60px;
-        width: 60px; }
+	display: flex;
+	flex-direction: column;
+}
+.dice .die {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	margin-top: 10px;
+}
+.dice .die.locked .die-icon {
+	opacity: 0.7;
+}
+.dice .die.locked .die-toggle .fa-unlock {
+	display: none;
+}
+.dice .die.locked .die-toggle .fa-lock {
+	display: block;
+}
+.dice .die .die-toggle {
+	cursor: pointer;
+	align-self: flex-end;
+	margin-left: 12px;
+}
+.dice .die .die-toggle .fa-lock {
+	display: none;
+}
+.dice .die .die-icon {
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.dice .die .die-icon.d1 {
+	background-image: url('../img/die1.png');
+	height: 60px;
+	width: 60px;
+}
+.dice .die .die-icon.d2 {
+	background-image: url('../img/die2.png');
+	height: 60px;
+	width: 60px;
+}
+.dice .die .die-icon.d3 {
+	background-image: url('../img/die3.png');
+	height: 60px;
+	width: 60px;
+}
+.dice .die .die-icon.d4 {
+	background-image: url('../img/die4.png');
+	height: 60px;
+	width: 60px;
+}
+.dice .die .die-icon.d5 {
+	background-image: url('../img/die5.png');
+	height: 60px;
+	width: 60px;
+}
+.dice .die .die-icon.d6 {
+	background-image: url('../img/die6.png');
+	height: 60px;
+	width: 60px;
+}
 
 .roll-badge {
-  margin-left: 5px;
-  width: 46px; }
+	margin-left: 5px;
+	width: 46px;
+}
 
 .details {
-  margin-top: 10px; }
+	margin-top: 10px;
+}
 
 .load-mask {
-  display: none; }
+	display: none;
+}
 
 .loading .load-mask {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.6); }
-  .loading .load-mask::after {
-    display: flex;
-    content: 'Loading...';
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-    font-size: 24px; }
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+.loading .load-mask::after {
+	display: flex;
+	content: 'Loading...';
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	color: #ffffff;
+	font-size: 24px;
+}

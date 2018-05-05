@@ -1,7 +1,7 @@
 /*
  * Server
  *
- * Copyright (c) 2018 ProKnow, LLC. All rights reserved.
+ * 
  */
 
 var _ = require('lodash');
